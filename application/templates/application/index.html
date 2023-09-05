@@ -1,0 +1,18 @@
+{% extends 'layouts/basic.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+    <p>Books</p>
+    {% for book in books %}
+    <p>Книга</p>
+    <p> {{ book.title }} </p>
+    <p>Автор, Содержание</p>
+    <p> {{ book.info }} </p>
+    <p>------------------------------</p>
+    {% endfor %}
+
+
+{% endblock %}
+

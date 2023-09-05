@@ -1,0 +1,16 @@
+{% extends 'layouts/basic.html' %}
+
+{% block title %}Author List{% endblock %}
+
+{% block content %}
+
+    <p>Авторы</p>
+    {% for i in authors %}
+    <p>Автор</p>
+    <p> {{ i.info }} </p>
+    <p>Книга</p>
+    <p>{{ i.title }}</p>
+    <p>------------------------------</p>
+    {% endfor %}
+
+{% endblock %}
