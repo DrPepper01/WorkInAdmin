@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import ForeignKey
+# from django.db.models import ForeignKey, ManyToManyField
 
 
 class Author(models.Model):
@@ -28,5 +28,29 @@ class Book(models.Model):
 class Janre(models.Model):
     name = models.CharField(max_length=20)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+
+class Students(models.Model):
+    name = models.CharField(max_length=50)
+    surname = models.CharField(max_length=60)
+    age = models.IntegerField()
+    courses = models.ManyToManyField('Courses', null=True, blank=True)
+    student_average_grade = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.name} | {self.surname} | {self.student_average_grade}'
+
+
+class Courses(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=300)
+    # students = models.ManyToManyField('Students', on_delete=models.CASCADE, null=True, blank=True)
+    date_of_start = models.DateField()
+    date_of_the_end = models.DateField()
+
+    def __str__(self):
+        return f'{self.title} | {self.date_of_start} | {self.date_of_the_end}'
+
+
 
 
