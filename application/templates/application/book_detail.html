@@ -1,0 +1,16 @@
+{% extends 'layouts/basic.html' %}
+
+{% block title %}Book List{% endblock %}
+
+{% block content %}
+    {% for book in books %}
+    <p>Книга</p>
+    <p> {{ book.title }} </p>
+    <p>PK</p>
+    <p>{{book.pk}}</p>
+    <p>Цена</p>
+    <p> {{ book.price }}ТГ </p>
+    <p>------------------------------</p>
+    {% endfor %}
+
+{% endblock %}

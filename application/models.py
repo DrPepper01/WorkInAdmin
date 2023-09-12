@@ -16,7 +16,7 @@ class Book(models.Model):
     info = models.CharField(max_length=200)
     price = models.IntegerField()
     release_date = models.DateField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True, related_name='bookies')
 
     def __str__(self):
         return f'{self.title} | {self.info} | {self.price}'
@@ -34,8 +34,8 @@ class Students(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=60)
     age = models.IntegerField()
-    courses = models.ManyToManyField('Courses', null=True, blank=True)
-    student_average_grade = models.IntegerField()
+    courses = models.ManyToManyField('Courses')
+    student_average_grade = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return f'{self.name} | {self.surname} | {self.student_average_grade}'
