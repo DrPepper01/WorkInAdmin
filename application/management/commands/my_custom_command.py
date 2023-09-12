@@ -8,10 +8,11 @@ class Command(BaseCommand):
     help = u'Создание случайных студентов'
 
     def add_arguments(self, parser):
-        parser.add_argument('total', type=int, help=u'Количество создаваемых Студентов')
+        parser.add_argument('total', type=int, help=u'Количество создаваемых Студентов и курсов')
 
     def handle(self, *args, **kwargs):
         total = kwargs['total']
         for i in range(total):
             Students.objects.create(name=get_random_string(length=7), surname='',
                                     age='20')
+            Courses.objects.create(title=get_random_string(length=5))
