@@ -10,6 +10,7 @@
     <p> {{ book.title }} </p>
     <p>Автор, Содержание</p>
     <p> {{ book.info }} </p>
+    <p> {{ book.author.name }} {{ book.author.last_name }} </p>
     <p>------------------------------</p>
     {% endfor %}
 

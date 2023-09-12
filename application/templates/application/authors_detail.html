@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'layouts/basic.html' %}
+
+{% block title %}Author Detail{% endblock %}
+
+{% block content %}
+
+    <p>Автор</p>
+    <p> Имя: {{ author.name }} </p>
+    <p> Фамилия: {{ author.last_name }} </p>
+    <p> Дата рождения - {{ author.date_of_birth }} </p>
+    <p>PK: {{author.pk}}</p>
+    <p>Книги:</p>
+    {% for books in author.bookies.all %}
+    <p>{{ books.title }}</p>
+    {% endfor %}
+
+
+
+{% endblock %}
