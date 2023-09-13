@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from .models import Book, Author
-from django.views.generic import TemplateView
+from .forms import BookForm
+from django.views.generic import TemplateView, FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -41,8 +44,19 @@ class AuthorDetailView(DetailView):
     #     return context
 
 
-
 class BookDetailView(DetailView):
     model = Book
     context_object_name = 'book'
     template_name = 'application/book_detail.html'
+
+
+class AddBookView(LoginRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+    success_url = '/books/'
+    template_name = 'application/form.html'
+
+
+
+
+
