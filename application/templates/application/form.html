@@ -4,9 +4,10 @@
 
 {% block content %}
 
-
-
-
+        <h1> {{ form_name }} </h1>
+        {% if update_text %}
+            <p>Вы хотите {{ action }} книгу {{ object.title }} с ключем {{ object.pk }}</p>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

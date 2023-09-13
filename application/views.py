@@ -4,7 +4,7 @@ from .forms import BookForm
 from django.views.generic import TemplateView, FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -56,7 +56,38 @@ class AddBookView(LoginRequiredMixin, CreateView):
     success_url = '/books/'
     template_name = 'application/form.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_name'] = 'Создание Книги'
+        return context
 
+
+class UpdateBookView(LoginRequiredMixin, UpdateView):
+    model = Book
+    fields = '__all__'
+    success_url = '/books/{id}'
+    template_name = 'application/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_name'] = 'Обновить Книгу'
+        context['update_text'] = True
+        context['action'] = 'Обновить'
+        return context
+
+
+class DeleteBookView(LoginRequiredMixin, DeleteView):
+    model = Book
+    fields = '__all__'
+    success_url = '/books/'
+    template_name = 'application/form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_name'] = 'Удалить Книгу'
+        context['update_text'] = True
+        context['action'] = 'Удалить'
+        return context
 
 
 
