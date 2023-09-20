@@ -10,10 +10,15 @@
     <p> Дата рождения - {{ author.date_of_birth }} </p>
     <p>PK: {{author.pk}}</p>
     <p>Книги:</p>
-    {% for books in author.bookies.all %}
-    <p>{{ books.title }}</p>
+    {% for i in books %}
+        <p>{{ i.title }}</p>
+        <p>{{ i.info }}</p>
+        <p>{{ i.price }}</p>
+        <p>{{ i.release_date }}</p>
     {% endfor %}
-
-
+    <p>Курсы</p>
+    {% for i in courses %}
+        <p>{{ i.title }}</p>
+    {% endfor %}
 
 {% endblock %}

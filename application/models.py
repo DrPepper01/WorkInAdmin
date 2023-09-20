@@ -45,8 +45,9 @@ class Courses(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
     # students = models.ManyToManyField('Students', on_delete=models.CASCADE, null=True, blank=True)
-    date_of_start = models.DateField()
-    date_of_the_end = models.DateField()
+    date_of_start = models.DateField(null=True, blank=True)
+    date_of_the_end = models.DateField(null=True, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True, related_name='courses')
 
     def __str__(self):
         return f'{self.title} | {self.date_of_start} | {self.date_of_the_end}'

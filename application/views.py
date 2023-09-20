@@ -38,10 +38,13 @@ class AuthorDetailView(DetailView):
     template_name = 'application/authors_detail.html'
     pk_url_kwarg = 'pk'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(AuthorDetailView, self).get_context_data(**kwargs)
-    #     context['books'] = Book.objects.filter(author_id=book_id)
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        author = self.get_object()
+        books = author.bookies.all()
+        context['courses'] = author.courses.all()
+        context['books'] = books
+        return context
 
 
 class BookDetailView(DetailView):
