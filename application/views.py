@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -15,11 +15,20 @@ class AllView(TemplateView):
     template_name = 'application/index.html'
     context_object_name = 'books'
 
+    # def get_context_data(self, **kwargs):
+    #     return {'books': Book.objects.all()}
     def get_context_data(self, **kwargs):
-        return {'books': Book.objects.all()}
+        context = super().get_context_data(**kwargs)
+        book_list = Book.objects.all()
+        paginator = Paginator(book_list, 3)  # Разбить на страницы по 10 книг на каждой странице
+        page = self.request.GET.get('page')
+        books = paginator.get_page(page)
+        context['books'] = books
+        return context
 
 
 class BookList(ListView):
+    paginate_by = 2
     model = Book
     context_object_name = 'books'
 

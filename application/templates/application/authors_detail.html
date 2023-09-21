@@ -11,10 +11,12 @@
     <p>PK: {{author.pk}}</p>
     <p>Книги:</p>
     {% for i in books %}
+        <p>----------------------------------</p>
         <p>{{ i.title }}</p>
         <p>{{ i.info }}</p>
         <p>{{ i.price }}</p>
         <p>{{ i.release_date }}</p>
+        <p>----------------------------------</p>
     {% endfor %}
     <p>Курсы</p>
     {% for i in courses %}
