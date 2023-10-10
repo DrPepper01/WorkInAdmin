@@ -6,12 +6,19 @@
 
         <h1> {{ form_name }} </h1>
         {% if update_text %}
-            <p>Вы хотите {{ action }} книгу {{ object.title }} с ключем {{ object.pk }}</p>
+            <p>Вы хотите {{ action }} запись {{ model }} с ключем {{ object.pk }}</p>
         {% endif %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Submit</button>
         </form>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
 {% endblock %}

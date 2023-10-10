@@ -1,6 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Book, Author
-from .forms import BookForm
+from .forms import BookForm, AddAuthorForm
 from django.views.generic import TemplateView, FormView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -25,6 +26,21 @@ class AllView(TemplateView):
         books = paginator.get_page(page)
         context['books'] = books
         return context
+
+
+class CreateAuthorView(LoginRequiredMixin, CreateView):
+    model = Author
+    form_class = AddAuthorForm
+    template_name = 'application/form.html'
+    success_url = '/authors/{id}'
+
+    def form_valid(self, form):
+        return HttpResponse('form valid!'
+                            'Автор зарегистрирован')
+
+    def form_invalid(self, form):
+        return HttpResponse('form invalid'
+                            'Возникла ошибка, попробуйте еще раз')
 
 
 class BookList(ListView):

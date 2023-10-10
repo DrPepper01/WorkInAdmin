@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from application.views import AllView, BookList, AuthorView, AuthorDetailView, BookDetailView, AddBookView, \
-    UpdateBookView, DeleteBookView
+    UpdateBookView, DeleteBookView, CreateAuthorView
 
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path('', AllView.as_view(), name='main_page'),
     path('authors/', AuthorView.as_view(), name='author_list'),
     path('authors/<int:pk>/', AuthorDetailView.as_view(), name='authors_detail'),
+    path('authors/create', CreateAuthorView.as_view(), name='authors_create'),
     path('books/', BookList.as_view(), name='books_list'),
     path('books/<int:pk>/', BookDetailView.as_view(), name='books_detail'),
     path('books/add/', AddBookView.as_view(), name='add_book'),
